@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  insta_image_viewer: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -67,8 +68,14 @@ flutter:
     - assets/json/move.json
     - assets/images/
     - assets/images/2/
+    - assets/images/3/
+    - assets/images/5/
+    - assets/images/6/
+    - assets/images/6/test/
     - assets/images/2/test/
-    - assets/images/2/test/2
+    - assets/images/2/test/2/
+    - assets/images/2/test/3/
+    - assets/images/2/test/4/
     - assets/lessons/cycle/
     - assets/lessons/
     - assets/lessons/ygysu/

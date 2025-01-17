@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:physics/pages/testing.dart';
 
 class LessonMenu extends StatelessWidget {
@@ -69,7 +70,9 @@ class LessonMenu extends StatelessWidget {
                             SizedBox(height: 15,),
                             lesson['shamalar'][index]['image'] != null
                             ? Container(
-                              child: Image.asset('${lesson['shamalar'][index]['image']}', fit: BoxFit.cover,),
+                              child: InstaImageViewer(
+                                child: Image.asset('${lesson['shamalar'][index]['image']}', fit: BoxFit.contain,),
+                              ),
                             )
                             : Text('')
                           ],
@@ -81,7 +84,7 @@ class LessonMenu extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Align(
+                lesson['tests'].isEmpty ? Text('') : Align(
                   alignment: Alignment.bottomRight,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

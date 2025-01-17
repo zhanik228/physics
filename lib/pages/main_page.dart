@@ -1,8 +1,36 @@
-import 'package:flutter/material.dart';
-import 'package:physics/pages/lesson_list.dart';
+import 'dart:convert';
 
-class MainPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:physics/pages/lesson_list.dart';
+import 'package:physics/pages/testing.dart';
+
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+
+  List _lessons = [];
+
+  Future readJson() async {
+    var json = await rootBundle.loadString('assets/json/move.json');
+    var jsondata = jsonDecode(json);
+    _lessons = jsondata;
+    setState(() {
+      
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    readJson();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,29 +84,63 @@ class MainPage extends StatelessWidget {
                   SizedBox(
                     height: 100,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 108, 182, 23),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )
-                      ),
-                      onPressed:() {
-                        Navigator.push(context, MaterialPageRoute(builder:(context) {
-                          return LessonList();
-                        },));
-                      }, 
-                      child: Text(
-                        'Бастау ▶️',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20
+                  Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(255, 108, 182, 23),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )
+                          ),
+                          onPressed:() {
+                            Navigator.push(context, MaterialPageRoute(builder:(context) {
+                              return LessonList();
+                            },));
+                          }, 
+                          child: Text(
+                            'Бастау ▶️',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20
+                            ),
+                          )
                         ),
-                      )
-                    ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      _lessons.isNotEmpty ?
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(255, 23, 182, 174),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )
+                          ),
+                          onPressed:() {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder:(context) {
+                                return Testing(lesson: _lessons.last); 
+                              }, 
+                            ));
+                          }, 
+                          child: Text(
+                            'Барлық тақырыпқа тест ▶️',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20
+                            ),
+                          )
+                        ),
+                      ) : Text('')
+                    ],
                   )
                 ],
               ),

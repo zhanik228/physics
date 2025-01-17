@@ -40,7 +40,7 @@ class _LessonListState extends State<LessonList> {
         ),),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black.withOpacity(0.6),
         leading: BackButton(
           color: Colors.white,
         ),
