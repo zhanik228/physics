@@ -17,6 +17,7 @@ class _LessonListState extends State<LessonList> {
   Future readJson() async {
     var json = await rootBundle.loadString('assets/json/move.json');
     var jsondata = jsonDecode(json);
+    jsondata.removeLast();
     _lessons = jsondata;
     setState(() {
       
